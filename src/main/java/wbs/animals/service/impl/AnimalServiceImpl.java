@@ -21,10 +21,11 @@ public class AnimalServiceImpl implements AnimalService {
     public static void queryAnimals(String animal, Animal animalModel) {
         String queryString = "PREFIX dbo: <http://dbpedia.org/ontology/>\n" +
                 "PREFIX dbr: <http://dbpedia.org/resource/>\n" +
-                "select  ?about\n" +
+                "select  ?output\n" +
                 "where{\n" +
-                "dbr:ANIMAL dbo:abstract ?about\n." +
-                "FILTER(lang(?about) = \"en\")\n" +
+                "dbr:ANIMAL dbo:abstract ?about.\n" +
+                "FILTER(lang(?about) = \"en\").\n" +
+                "BIND(REPLACE(STR(?about),\"\\\"\",\"\") AS ?output) .\n" +
                 "}";
         queryString = queryString.replace("ANIMAL", animal);
         Query query = QueryFactory.create(queryString);
