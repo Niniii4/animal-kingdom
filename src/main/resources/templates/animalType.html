@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal Type</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="icon"
+          type="image/png"
+          href="/images/favicon.png">
+
+    <style>
+        .card, .card a {
+            color: #41ba8e;
+            text-decoration: none;
+        }
+
+        body {
+            background-color: #41ba8e;
+            font-family: Impact, fantasy;
+        }
+
+        p {
+            font-family: "Trebuchet MS", sans-serif;
+            font-size: 11px;
+            text-align: justify;
+        }
+
+        .card-img-top {
+            width: 100%;
+            height: 13vw;
+        }
+
+        .card-left {
+            flex-direction: row;
+        }
+
+        .img-left {
+            width: 160%;
+        }
+
+        .text-left {
+            font-size: 13px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container mx-auto">
+    <div>
+        <div class="row mt-3 justify-content-around">
+            <div class="col mt-3 d-flex align-items-stretch">
+                <div class="card card-left">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <img class="card img-left img" th:src="${animalTypes.getImage()}" alt="">
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="card-body">
+                                <h2 th:text="${animalTypes.getName()}"></h2>
+                                <p class="card-text text-left" th:text="${animalTypes.getDescription()}"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3 mb-5 justify-content-around">
+            <div class="col-md-3 mt-3 column d-flex align-items-stretch"
+                 th:each="anTyp: ${animalTypes.getAnimalType()}">
+                <div class="card mmt-4">
+                    <img class="card-img-top" th:src="${anTyp.getImage()}" alt="">
+                    <div class="card-body">
+                        <h6 th:text="${anTyp.getName()}"></h6>
+                        <p class="card-text" th:text="${anTyp.getDescription()}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
